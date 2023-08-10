@@ -42,10 +42,10 @@ function ChatApp() {
   };
 
   return (
-    <div className="chat-container">
+    <div className="chat-container h-full">
 
       {/*--------- CHAT MESSAGES -------- */}
-      <div className="chat-messages border-solid h-full py-5 border-blue-200 border-x-[1px] w-full">
+      <div className="chat-messages overflow-x-hidden overflow-scroll border-solid h-full py-5 border-blue-200 border-x-[1px] w-full">
       
        
       
@@ -54,7 +54,7 @@ function ChatApp() {
           if (message.user === 'User') {
             return(
               <div className='flex gap-1 pr-2 items-center w-full mb-1'>
-                 <div key={index} className="bg-blue-200 overflow-hidden ml-auto px-5 py-2 rounded-t-[18px] rounded-bl-[18px] mb-1 w-[55%]">
+                 <div key={index} className="bg-blue-200 overflow-hidden ml-auto px-5 py-2 rounded-t-[18px] rounded-bl-[18px] mb-1 w-fit max-w-[70%]">
                     {message.text}
                 </div>
                 <IoPerson className='text-blue-400 -mb-2 self-end text-[30px]'/>
@@ -67,7 +67,7 @@ function ChatApp() {
             return(
               <div className='flex gap-2 pl-2 items-center w-full mb-4'>
             <BiSolidBot className='text-blue-400 -mb-2 self-end text-[30px]'/>
-            <div className="border-solid flex items-center gap-3 border-2 border-blue-200 mr-auto px-5 py-2 rounded-t-[18px] rounded-br-[18px] w-[65%]">
+            <div className="border-solid flex items-center gap-3 border-2 border-blue-200 mr-auto px-5 py-2 rounded-t-[18px] rounded-br-[18px] w-fit max-w-[70%]">
             Hi, what can i help you ?
           </div>
           
