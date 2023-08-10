@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {IoSendSharp} from 'react-icons/io5'
 
 function ChatApp() {
   const [messages, setMessages] = useState([]);
@@ -22,8 +23,9 @@ function ChatApp() {
           </div>
         ))}
       </div>
-      <div className="input-container">
+      <div className="input-container flex justify-between w-full text-primary">
         <input
+         className='flex-1 border-solid border-[1px] p-2 focus:outline-none border-blue-200'
           type="text"
           placeholder="Type your message..."
           value={newMessage}
@@ -34,7 +36,7 @@ function ChatApp() {
             }
           }}
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button className='bg-blue-200 px-5 ml-auto rounded-sm hover:bg-primary flex items-center gap-3 hover:text-white' onClick={handleSendMessage}>Send <IoSendSharp/> </button>
       </div>
     </div>
   );
