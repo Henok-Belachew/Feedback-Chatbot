@@ -1,48 +1,84 @@
-import React, { useState } from 'react';
-import {IoSendSharp} from 'react-icons/io5'
-import {BiSolidBot} from 'react-icons/bi'
-import {IoPerson} from 'react-icons/io5'
+import React, { useState, useEffect } from 'react';
+import {IoSendSharp} from 'react-icons/io5';
+import {BiSolidBot} from 'react-icons/bi';
+import {IoPerson} from 'react-icons/io5';
+import axios from 'axios';
+
+
 
 function ChatApp() {
-  const [messages, setMessages] = useState([]);
+  const [change, setChange] = useState(false)
+  const [messages, setMessages] = useState(["Hi, what can i help you ?"]);
   const [newMessage, setNewMessage] = useState('');
 
+  useEffect(()=>{
+    axios.get("http://127.0.0.1:5000/hi").then((response) => {
+    let hi = response.data  
+    setMessages([{text: hi, user: 'bot' }])
+    }).catch(error => alert(error))
+  }, [change])
+
+
   const handleSendMessage = () => {
+    if (newMessage === "/clear") {
+      setMessages([])
+      setChange(chg => !chg)
+      setNewMessage('');
+      
+      return
+    }
     if (newMessage.trim() === '') return;
 
-    const newMessages = [...messages, { text: newMessage, user: 'user' }];
+    const newMessages = [...messages, { text: newMessage, user: 'User' }];
     setMessages(newMessages);
     setNewMessage('');
+
+    axios.get("http://127.0.0.1:5000/hi").then((response) => {
+    let hi = response.data  
+    // const newMessages = [...messages, { text: hi, user: 'bot' }];
+    setMessages(oldMessages => [...oldMessages, { text: hi, user: 'bot' }]);
+    }).catch(error => alert(error))
     // Add logic to send the message to the chatbot backend here
   };
 
   return (
     <div className="chat-container">
-      <div className="chat-messages w-full">
+
+      {/*--------- CHAT MESSAGES -------- */}
+      <div className="chat-messages border-solid h-full py-5 border-blue-200 border-x-[1px] w-full">
       
-        <div className='flex gap-2 items-center w-full mb-1'>
+       
+      
+          
+        {messages.map((message, index) => {
+          if (message.user === 'User') {
+            return(
+              <div className='flex gap-1 pr-2 items-center w-full mb-1'>
+                 <div key={index} className="bg-blue-200 overflow-hidden ml-auto px-5 py-2 rounded-t-[18px] rounded-bl-[18px] mb-1 w-[55%]">
+                    {message.text}
+                </div>
+                <IoPerson className='text-blue-400 -mb-2 self-end text-[30px]'/>
+
+            </div>
+            )
+          }
+
+          else {
+            return(
+              <div className='flex gap-2 pl-2 items-center w-full mb-4'>
             <BiSolidBot className='text-blue-400 -mb-2 self-end text-[30px]'/>
             <div className="border-solid flex items-center gap-3 border-2 border-blue-200 mr-auto px-5 py-2 rounded-t-[18px] rounded-br-[18px] w-[65%]">
             Hi, what can i help you ?
           </div>
           
         </div>
-      
-          
-        {messages.map((message, index) => (
-            <div className='flex gap-1 items-center w-full mb-1'>
-                 <div key={index} className="bg-blue-200 overflow-hidden ml-auto px-5 py-2 rounded-t-[18px] rounded-bl-[18px] mb-1 w-[200px]">
-                    {message.text}
-                </div>
-                <IoPerson className='text-blue-400 -mb-2 self-end text-[30px]'/>
-
-            </div>
-         
-        ))}
+            )
+          }
+        })}
 
         
       </div>
-      <div className="input-container flex justify-between w-full mt-5 text-primary">
+      <div className="input-container flex justify-between w-full text-primary">
         <input
          className='flex-1 border-solid border-[1px] p-2 text-black focus:outline-none border-blue-200'
           type="text"
