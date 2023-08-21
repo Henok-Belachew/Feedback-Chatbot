@@ -8,7 +8,7 @@ import doctors from './doctors.png'
 
 function App() {
   return (
-    <div className='md:flex md:flex-col'>
+    <div className='max-:flex max-md:flex-col'>
       {/* HEADER */}
         <div className='h-[100px] flex items-center justify-between shadow-lg p-4 px-24 -md'>
           <img src={logo} className='h-full' alt="" />
@@ -33,7 +33,7 @@ function App() {
         </div>
 
         {/* MAIN BODY */}
-        <div className='px-32 flex h-[82vh] justify-between items-center relative z-10'>
+        <div className='px-32 flex max-lg:flex-col h-[82vh] justify-between items-center relative z-10'>
           {/* LEFT SIDE */}
           <div className='mt-[12%] w-[40%] self-start'>
             <h1 className='font-bold text-[32px] text-green'>
