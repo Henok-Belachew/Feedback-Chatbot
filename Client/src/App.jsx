@@ -8,7 +8,7 @@ import doctors from './doctors.png'
 
 function App() {
   return (
-    <div className=''>
+    <div className='md:flex md:flex-col'>
       {/* HEADER */}
         <div className='h-[100px] flex items-center justify-between shadow-lg p-4 px-24 -md'>
           <img src={logo} className='h-full' alt="" />
@@ -60,52 +60,7 @@ function App() {
           
         </div>
         {/* Footer */}
-        <div className='bg-[#82c182] text-white h-[250px] flex gap-6 px-32 mt-6 py-6'>
-          <div className=" w-1/4 h-full flex flex-col gap-4">
-            <h1 className='font-bold text-[22px]'>
-              About Us
-            </h1>
-
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque aut ipsum nisi alias facere quasi.</p>
-          </div>
-          <div className="w-1/4 h-full flex flex-col pl-8 gap-4">
-            <h1 className='font-bold text-[22px]'>
-              Services
-            </h1>
-            <div className='flex flex-col gap-2'>
-            {
-              ['Conditions', 'Latest News', 'What We Offer', 'Contact Us'].map((service)=>{
-                return(
-                  <a className='semibold cursor-pointer' href="#">{service}</a>
-                )
-              })
-            }
-            </div>
-          </div>
-          <div className="w-1/4 h-full flex flex-col gap-4 ">
-          <h1 className='font-bold text-[22px]'>
-              Useful Links
-            </h1>
-            <div className='flex flex-col gap-2'>
-            {
-              ['Conditions', 'Terms of Use', 'Our Services', 'Team List'].map((service)=>{
-                return(
-                  <a className='semibold cursor-pointer' href="#">{service}</a>
-                )
-              })
-            }
-            </div>
-          </div>
-          <div className=" w-1/4 h-full flex flex-col gap-4">
-            <h1 className='font-bold text-[22px] '>
-              Subscribe
-            </h1>
-            <input type="text" placeholder='Email' className='px-5 py-2 rounded-sm font-semibold border-[1px] border-blue bg-none ' />
-          </div>
-          
-  
-
-        </div>
+        
 
     <img className='absolute top-[100px] w-[50%] opacity-20 z-1' src={doctors} alt="" />
     </div>
